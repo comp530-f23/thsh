@@ -11,11 +11,44 @@ struct builtin {
 };
 
 
+static char old_path[MAX_INPUT];
+static char cur_path[MAX_INPUT];
+static char usr_path[MAX_INPUT];
+
+/* This function needs to be called once at start-up to initialize
+ * the current path.  This should populate cur_path.
+ *
+ * Returns zero on success, -errno on failure.
+ */
+int init_cwd(void) {
+
+  // Lab 2: Your code here
+
+  return 0;
+}
+
 /* Handle a cd command.  */
 int handle_cd(char *args[MAX_INPUT], int stdin, int stdout) {
 
-  // You will implement this in Lab 2.
-  // Just return 42 for now (for testing).
+  // Note that you need to handle special arguments, including:
+  // "-" switch to the last directory
+  // "." switch to the current directory.  This should change the
+  //     behavior of a subsequent "cd -"
+  // ".." go up one directory
+  //
+  // Hint: chdir can handle "." and "..", but saving
+  //       these results may not be the desired outcome...
+
+  // XXX: Test for errors in the output if a cd fails
+
+  // Lab 2: Your code here
+  //
+
+  // Remove the following two lines once implemented.  These
+  // just suppress the compiler warning around an unused variable
+  (void) cur_path;
+  (void) old_path;
+
   return 42;
 }
 
@@ -53,3 +86,28 @@ int handle_builtin(char *args[MAX_ARGS], int stdin, int stdout, int *retval) {
   return rv;
 }
 
+/* This function initially prints a default prompt of:
+ * thsh>
+ *
+ * In Lab 2, Exercise 3, you will add the current working
+ * directory to the prompt.  As in, if you are in "/home/foo"
+ * the prompt should be:
+ * [/home/foo] thsh>
+ *
+ * Returns the number of bytes written
+ */
+int print_prompt(void) {
+  int ret = 0;
+  // Print the prompt
+  // file descriptor 1 -> writing to stdout
+  // print the whole prompt string (write number of
+  // bytes/chars equal to the length of prompt)
+  //
+  const char *prompt = "thsh> ";
+
+  // Lab 2: Your code here
+
+
+  ret = write(1, prompt, strlen(prompt));
+  return ret;
+}

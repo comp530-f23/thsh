@@ -118,6 +118,11 @@ static int expand_glob(char *glob, char **buf, size_t *bufsize,
   int rv = 0;
 
   // Your code here (maybe)
+
+  // Suppress the compiler warning that glob_matches is not used in the starer code.
+  // It is only here for a challenge problem, and this line may be ignored.
+  // You may remove this line if/when you use glob_matches in your code.
+  (void)&glob_matches;
   return rv;
 }
 
@@ -204,5 +209,10 @@ int parse_line (char *inbuf, size_t length,
 		char *scratch, size_t scratch_len) {
 
   // Lab 1: Your code here
+  // Suppress the compiler warning that expand_glob is not used in the starer code.
+  // It is only here for a challenge problem, and this line may be ignored.
+  // You may remove this line if/when you use expand_glob in your code.
+  (void)&expand_glob;
+
   return -ENOSYS;
 }
